@@ -1,0 +1,85 @@
+{
+    "id":"PD6_Deployment_1",
+    "descr":" Deployment",
+    "components":
+    [
+	{
+	    "id":"BET_EF",
+	    "exec_args":"path-to-configuration-file/bet_ST.cfg YYYYMMDD_HHMM path-to-store-results",
+	    "host":"NAME",
+	    "nproc":"1",
+	    "exec_dir":"path-to-scripts",
+	    "data_dir":"path-to-save-temp-data"
+	},
+        {
+            "id":"BET_WEATHER",
+            "exec_args":"path-to-configuration-file/bet_ST.cfg YYYYMMDD",
+            "host":"NAME",
+            "nproc":"1",
+            "exec_dir":"path-to-scripts",
+            "data_dir":"path-to-save-temp-data"
+        },
+        {
+            "id":"BET_PRE_VH",
+            "exec_args":"path-to-configuration-file/bet_ST.cfg YYYYMMDD weather-YYYYMMDD.nc path-to-scenarios-folder",
+            "host":"NAME",
+            "nproc":"n",
+            "exec_dir":"path-to-scripts",
+            "data_dir":"path-to-save-temp-data"
+        },
+        {
+            "id":"BET_TEPHRA",
+            "exec_args":"path-to-scenarios-file",
+            "host":"NAME",
+            "nproc":"n",
+            "ncores_per_proc":"n",
+            "time":"t",
+            "exec_dir":"path-to-scripts",
+            "data_dir":"path-to-save-temp-data"
+        },
+        {
+            "id":"BET_POST_TEPHRA",
+            "exec_args":"path-to-configuration-file/bet_ST.cfg YYYYMMDD path-to-scenarios-folder path-to-store-results",
+            "host":"NAME",
+            "nproc":"1",
+            "ncores_per_proc":"n",
+            "time":"t",
+            "exec_dir":"path-to-scripts",
+            "data_dir":"path-to-save-temp-data"
+        },
+        {
+            "id":"BET_VH",
+            "exec_args":"path-to-configuration-file/bet_ST.cfg YYYYMMDD path-to-scenarios-folder path-to-eruptive-forecasting path-to-store-results",
+            "host":"NAME",
+            "nproc":"n",
+            "ncores_per_proc":"n",
+            "time":"t",
+            "exec_dir":"path-to-scripts",
+            "data_dir":"path-to-save-temp-data"
+        },
+	{
+	    "id":"BET_POST_EF",
+	    "exec_args":"/opt/BET-OV2/WP3_results",
+	    "host":"NAME",
+	    "nproc":"1",
+	    "exec_dir":"path-to-scripts",
+	    "data_dir":"path-to-save-temp-data"
+	},
+        {
+            "id":"BET_POST_VH",
+            "exec_args":"YYYYMMDD path-to-eruptive-forecasting path-to-store-results",
+            "host":"NAME",
+            "nproc":"1",
+            "exec_dir":"path-to-scripts",
+            "data_dir":"path-to-save-temp-data"
+        }
+    ],
+    "data_transfer_model":
+    [
+	{
+	    "src_host_id":"NAME",
+	    "dst_host_id":"localhost",
+	    "protocol":"SCP"
+	}
+    ]
+}

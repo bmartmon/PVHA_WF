@@ -1,0 +1,71 @@
+{
+    "id":"PD6",
+    "descr":"PD6_workflow",
+    "components":
+    [
+       {
+            "id":"BET_EF",
+            "descr":"Calculation of Eruptive forecasting",
+            "type":"serial",
+            "exec_type":"bash",
+            "exec_file":"BET_EF.sh",
+            "depend":""
+        },
+        {
+            "id":"BET_WEATHER",
+            "descr":"Meteo data download",
+            "type":"serial",
+            "exec_type":"bash",
+            "exec_file":"BET_WEATHER.sh",
+            "depend":""
+        },
+        {
+            "id":"BET_PRE_VH",
+            "descr":"Calculation of volcanic scenarios",
+            "type":"serial",
+            "exec_type":"bash",
+            "exec_file":"BET_PRE_VH.sh",
+            "depend":"BET_WEATHER"
+        },
+        {
+            "id":"BET_TEPHRA",
+            "descr":"Execution of FALL3D simulations",
+            "type":"parametric",
+            "exec_type":"SLURM",
+            "exec_file":"BET_TEPHRA.job",
+            "depend":"BET_PRE_VH BET_WEATHER"
+        },
+        {
+            "id":"BET_POST_TEPHRA",
+            "descr":"Analysis of FALL3D simulations",
+            "type":"MPI",
+            "exec_type":"SLURM",
+            "exec_file":"BET_POST_TEPHRA.job",
+            "depend":"BET_TEPHRA"
+        },
+        {
+            "id":"BET_VH",
+            "descr":"Calculation of probabilities",
+            "type":"MPI",
+            "exec_type":"SLURM",
+            "exec_file":"BET_VH.job",
+            "depend":"BET_POST_TEPHRA BET_EF"
+        },
+        {
+            "id":"BET_POST_EF",
+            "descr":"Creation of images describing eruptive probabilities and vent opening locations",
+            "type":"serial",
+            "exec_type":"bash",
+            "exec_file":"BET_POST_EF.sh",
+            "depend":"BET_EF"
+        },
+        {
+            "id":"BET_POST_VH",
+            "descr":"Creation of images describing volcanic hazard",
+            "type":"serial",
+            "exec_type":"bash",
+            "exec_file":"BET_POST_VH.sh",
+            "depend":"BET_VH"
+        }
+    ]
+}
