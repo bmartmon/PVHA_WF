@@ -1,0 +1,7 @@
+For each point in a geographical area spanning from 31°N to 50°N latitude and from 3°E to 28°E longitude at 0.025° resolution NPY arrays contain the probabilities of exceeding critical thresholds 24 and 48 hours after the onset of an eruption of high size in Campi Flegrei at the vent located at 14.13 longitude, 40.82 latitude.
+- NPY arrays with probabilities of exceeding 23 critical thresholds for tephra load (0.01 to 16.0 kPa) at ground.
+  prob_ground_timeexp24(48).npy (shape: 761761 points x 23 thresholds)
+- NPY arrays with probabilities of exceeding 23 critical thresholds for tephra load (0.01 to 16.0 kPa) at ground for a specific season.
+prob_ground_timeexp48_season1(2,3,4).npy (shape: 761761 points x 23 thresholds)
+- NPY arrays with probabilities of exceeding 3 critical ash concentration thresholds (0.2, 2 and 4 mg/m3) at different flight levels (fl0=FL050, fl1=FL100, fl2= FL150,...fl7=FL400) and with different temporal persistence (e.g. pers5 = 5 hours persistence)
+  e.g. prob_fl0_pers5_timeexp24.npy (shape: 761761 points x 3 thresholds)
